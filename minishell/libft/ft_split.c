@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	ft_countword(char const *s, char c)
+static int	ft_countword_split(char const *s, char c)
 {
 	int	i;
 	int	count;
@@ -33,7 +33,7 @@ static int	ft_countword(char const *s, char c)
 	return (count);
 }
 
-static char	*ft_strndup(const char *s, size_t n)
+static char	*ft_strndup_split(const char *s, size_t n)
 {
 	char	*ptr;
 	size_t	i;
@@ -53,7 +53,7 @@ static char	*ft_strndup(const char *s, size_t n)
 	return (ptr);
 }
 
-static int	ft_getnextw(const char *s, char c)
+static int	ft_getnextw_split(const char *s, char c)
 {
 	int	i;
 
@@ -65,7 +65,7 @@ static int	ft_getnextw(const char *s, char c)
 	return (i);
 }
 
-static char	**ft_freetab(char **tab, int j)
+static char	**ft_freetab_split(char **tab, int j)
 {
 	int	i;
 
@@ -86,8 +86,8 @@ char	**ft_split(char const *s, char c)
 
 	if (s == NULL)
 		return (NULL);
-	words = ft_countword(s, c);
-	tab = (char **)malloc(sizeof(char *) * (ft_countword(s, c) + 1));
+	words = ft_countword_split(s, c);
+	tab = (char **)malloc(sizeof(char *) * (ft_countword_split(s, c) + 1));
 	if (tab == NULL)
 		return (NULL);
 	j = 0;
@@ -97,9 +97,9 @@ char	**ft_split(char const *s, char c)
 			s++;
 		if (j < words)
 		{
-			tab[j++] = ft_strndup(s, ft_getnextw(s, c));
+			tab[j++] = ft_strndup_split(s, ft_getnextw_split(s, c));
 			if (tab[j - 1] == NULL)
-				return (ft_freetab(tab, j));
+				return (ft_freetab_split(tab, j));
 		}
 		while (*s != c && *s)
 			s++;

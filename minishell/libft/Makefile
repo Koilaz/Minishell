@@ -21,6 +21,7 @@ ft_strnstr.c \
 ft_atoi.c \
 ft_calloc.c \
 ft_strdup.c \
+ft_strndup.c \
 ft_substr.c \
 ft_strjoin.c \
 ft_strtrim.c \
@@ -41,7 +42,8 @@ ft_lstdelone.c \
 ft_lstclear.c \
 ft_lstiter.c \
 ft_lstmap.c \
-get_next_line.c \
+ut_strjoin_safe.c \
+ut_get_next_line.c \
 ft_str_is_digit.c \
 ft_strcmp.c
 

@@ -12,35 +12,6 @@
 
 #include "libft.h"
 
-static char	*gnl_strjoin_safe(char const *s1, char const *s2)
-{
-	char	*ptr;
-	size_t	i;
-	size_t	j;
-
-	if (!s1)
-		s1 = "";
-	if (!s2)
-		s2 = "";
-	ptr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		ptr[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j] != '\0')
-	{
-		ptr[i + j] = s2[j];
-		j++;
-	}
-	ptr[i + j] = '\0';
-	return (ptr);
-}
-
 static char	*read_and_store(int fd, char *fullstr)
 {
 	char	*str;
@@ -57,7 +28,7 @@ static char	*read_and_store(int fd, char *fullstr)
 		if (number_read == -1)
 			return (free(str), free(fullstr), NULL);
 		str[number_read] = '\0';
-		tmp = gnl_strjoin_safe(fullstr, str);
+		tmp = strjoin_safe(fullstr, str);
 		free(fullstr);
 		if (!tmp)
 			return (free(str), NULL);
@@ -107,7 +78,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	line = NULL;
-	fullstr = gnl_strjoin_safe(stash[fd], "");
+	fullstr = strjoin_safe(stash[fd], "");
 	free(stash[fd]);
 	stash[fd] = NULL;
 	if (fullstr == NULL)

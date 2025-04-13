@@ -6,7 +6,7 @@
 /*   By: lmarck <lmarck@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 17:11:46 by lmarck            #+#    #+#             */
-/*   Updated: 2025/03/29 17:14:04 by lmarck           ###   ########.fr       */
+/*   Updated: 2025/04/13 15:23:56 by lmarck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	bi_export(char **arg, t_data *data)
 				error++;
 			}
 			else
-				data->env = modify_env(data->env, arg[i]);
+				data->env = modify_env(data->env, arg[i], data);
 			i++;
 		}
 	}
@@ -79,38 +79,43 @@ int	is_valid_var_name(char *arg)
 	return (1);
 }
 
-char	**modify_env(char **tab, char *line)
+char	**modify_env(char **tab, char *line, t_data *data)
 {
 	char	**ntab;
 	int		i;
 
-	if (var_exist(tab, line))
+	if (var_exist(tab, line, data))
 		return (tab);
 	i = 0;
 	ntab = ft_calloc(count_line(tab) + 2, sizeof(char *));
 	if (!ntab)
-		exit(MALLOC_FAIL);
+		exit_minishell("malloc failed", MALLOC_FAIL, data);
 	while (tab[i])
 	{
 		ntab[i] = tab[i];
 		i++;
 	}
 	ntab[i] = ft_strdup(line);
+	if (!ntab[i])
+	{
+		free(tab);
+		exit_minishell("malloc failed", MALLOC_FAIL, data);
+	}
 	free(tab);
 	return (ntab);
 }
 
-int	var_exist(char **tab, char *line)
+int	var_exist(char **tab, char *line, t_data *data)
 {
 	int		i;
 	char	**old;
 	char	**new;
 
 	i = 0;
-	new = secure_split(line, '=');
+	new = secure_split(line, '=', data);
 	while (tab[i])
 	{
-		old = ft_split(tab[i], '=');
+		old = secure_split(tab[i], '=', data);
 		if (new[0] && old[0] && !strcmp(old[0], new[0]))
 		{
 			if (ft_strchr(line, '='))
@@ -118,7 +123,7 @@ int	var_exist(char **tab, char *line)
 				free(tab[i]);
 				tab[i] = ft_strdup(line);
 				if (!tab[i])
-					exit(MALLOC_FAIL);
+					exit_minishell("malloc failed", MALLOC_FAIL, data);
 			}
 			return (free_tab(old), free_tab(new), 1);
 		}

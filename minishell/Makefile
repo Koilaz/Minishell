@@ -3,16 +3,23 @@ BUILD_DIR = build
 
 # Fichiers sources
 SRC_FILES = minishell.c \
-prompt.c \
+parsing/initialization/initialization.c \
+parsing/prompt/prompt.c \
+parsing/lexer/lexer.c \
+parsing/expansion/expand_env.c \
 minishell_utils.c \
 exit.c \
-execution.c\
-exit_minishell.c\
-export.c\
-init.c
+execution.c \
+exit_minishell.c \
+export.c \
+echo.c \
+unset.c \
+env.c \
+pwd.c \
+cd.c \
 
 # Transformation des fichiers sources en fichiers objets
-OBJFILES = $(addprefix $(BUILD_DIR)/, $(SRC_FILES:.c=.o))
+OBJFILES = $(patsubst %.c, $(BUILD_DIR)/%.o, $(SRC_FILES))
 
 # Compilation
 CC = cc
@@ -47,6 +54,7 @@ $(NAME): $(OBJFILES) $(LIBFT)
 # Compilation des fichiers .c en .o
 # PS : 42 autorise totalement ce genre de règles car elles ne détectent pas les fichiers automatiquement, elles les transforment juste.
 $(BUILD_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Nettoyage des fichiers objets
