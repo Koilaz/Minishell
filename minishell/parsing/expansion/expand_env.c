@@ -35,17 +35,12 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
     start = 0;
     str = NULL;
  
-    // full_str = NULL;
     if (full_str == NULL)
     {
         *status_code = 99;
         return (NULL);
     }
     new_full_str = ft_strdup("");
-
-    // free(new_full_str);
-    // new_full_str = NULL;
-
     if (new_full_str == NULL)
     {
         *status_code = 2;
@@ -70,11 +65,8 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
             }
             str = ft_strndup(full_str + start, i - start);
 
-            // free(str);
-            // str = NULL;
             if (str == NULL)
             {
-                // printf("gtz");
                 free(new_full_str);
                 *status_code = 2;
                 return (NULL);
@@ -84,10 +76,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
             if (ft_strcmp(str, "?") == 0)
             {
                 tmp = ft_itoa(data->last_exit_status);
-
-                // free(tmp);
-                // tmp = NULL;
-
                 if (tmp == NULL)
                 {
                     free(str);
@@ -136,8 +124,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
                 else
                 {
                     tmp = ft_strdup(tmp);
-                    // free(tmp);
-                    // tmp = NULL;
                     if (tmp == NULL)
                     {
                         free(str);
@@ -151,10 +137,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
             str = strjoin_safe(new_full_str, tmp);
             free(new_full_str);
             free(tmp);
-
-
-            // free(str);
-            // str = NULL;
 
             if (str == NULL)
             {
@@ -171,9 +153,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
             {
                 tmp = ft_itoa(data->last_exit_status);
 
-                // free(tmp);
-                // tmp = NULL;
-
                 if (tmp == NULL)
                 {
                     free(new_full_str);
@@ -184,8 +163,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
                 free(tmp);
                 free(new_full_str);
 
-                // free(str);
-                // str = NULL;
                 if (str == NULL)
                 {
                     *status_code = 2;
@@ -224,10 +201,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
                 if (tmp == NULL)
                 {
                     tmp = ft_strdup("");
-
-                    // free(tmp);
-                    // tmp = NULL;
-
                     if (tmp == NULL)
                     {
                         free(new_full_str);
@@ -235,10 +208,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
                         return (NULL);
                     }
                     str = strjoin_safe(new_full_str, tmp);
-
-                    // free(str);
-                    // str = NULL;
-
                     free(tmp);
                     if (str == NULL)
                     {
@@ -250,10 +219,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
                 else 
                 {
                     str = strjoin_safe(new_full_str, tmp);
-
-                    // free(str);
-                    // str = NULL;
-
                     if (str == NULL)
                     {
                         free(new_full_str);
@@ -267,10 +232,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
             else if (full_str[i] == '\0' || (ft_isalnum(full_str[i]) == 0 && full_str[i] != '_'))
             {
                 tmp = ft_strdup("$");
-
-                // free(tmp);
-                // tmp = NULL;
-
                 if (tmp == NULL)
                 {
                     free(new_full_str);
@@ -278,10 +239,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
                     return (NULL);
                 }
                 str = strjoin_safe(new_full_str, tmp);
-
-                // free(str);
-                // str = NULL;
-
                 free(tmp);
                 free(new_full_str);
                 if (str == NULL)
@@ -297,10 +254,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
                 while (full_str[i] != '\0' && (ft_isalnum(full_str[i]) == 1 || full_str[i] == '_'))
                     i++;
                 str = ft_strndup(full_str + start, i - start);
-
-                // free(str);
-                // str = NULL;
-
                 if (str == NULL)
                 {
                     free(new_full_str);
@@ -312,11 +265,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
                 if (tmp == NULL)
                 {
                     tmp = ft_strdup("");
-
-
-                    // free(tmp);
-                    // tmp = NULL;
-
                     if (tmp == NULL)
                     {
                         free(new_full_str);
@@ -324,10 +272,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
                         return (NULL);
                     }
                     str = strjoin_safe(new_full_str, tmp);
-
-                    // free(str);
-                    // str = NULL;
-
                     free(tmp);
                     if (str == NULL)
                     {
@@ -335,15 +279,10 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
                         *status_code = 2;
                         return (NULL);
                     }
-                    
                 }
                 else
                 {
                     str = strjoin_safe(new_full_str, tmp);
-
-                    // free(str);
-                    // str = NULL;
-
                     if (str == NULL)
                     {
                         free(new_full_str);
@@ -362,9 +301,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
                 i++;
             str = ft_strndup(full_str + start, i - start);
 
-            // free(str);
-            // str = NULL;
-
             if (str == NULL)
             {
                 free(new_full_str);
@@ -374,11 +310,6 @@ char  *expand_env_variables(char *full_str, t_data *data, int *status_code)
             tmp = strjoin_safe(new_full_str, str);
             free(new_full_str);
             free(str);
-
-
-            // free(tmp);
-            // tmp = NULL;
-
 
             if (tmp == NULL)
             {
@@ -441,10 +372,6 @@ int    apply_env_expansion(t_segment	*segment_list, t_data *data)
                     }
 
                     char *new_str = ft_strdup(expand_str);
-
-                    // free(new_str);
-                    // new_str = NULL;
-                    
                     if (new_str == NULL)
                     {
                         free(expand_str);
@@ -465,188 +392,3 @@ int    apply_env_expansion(t_segment	*segment_list, t_data *data)
     return (0);
 }
 
-
-
-
-
-
-
-
-// Ancien code : 
-
-/*
-int is_valid_brace_expansion_syntax(char *str)
-{
-	int i;
-
-    i = 0;
-	if (str == NULL || (ft_isalpha(str[0]) == 0 && str[0] != '_'))
-		return (0);
-	while (str[i] != '\0')
-	{
-		if (ft_isalnum(str[i]) == 0 && str[i] != '_')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-
-char  *expand_env_variables(char *full_str, char **env)
-{
-    int     i;
-    int     start;
-    char    *str;
-    char    *new_full_str;
-    char    *tmp;
-
-    i = 0;
-    start = 0;
-    str = NULL;
-    if (full_str == NULL)
-        return (ft_strdup(""));
-    new_full_str = ft_strdup("");
-    while (full_str[i] != '\0')
-    {
-        //Rajouter ici cas special $? et $$ Rajouter int last_exit_status; dans t_data
-        // if (full_str[i] == '$' && full_str[i + 1] == '$')
-        // if (full_str[i] == '$' && full_str[i + 1] == '?')
-
-        if (full_str[i] == '$' && full_str[i + 1] == '{')
-        {
-            i = i + 2;
-            start = i;
-            while (full_str[i] != '\0' && full_str[i] != '}')
-                i++;
-            if (full_str[i] != '}')
-            {
-                write(2, "minishell: bad substitution\n", 29);
-                free(new_full_str);
-                return (NULL);
-            }
-            str = ft_strndup(full_str + start, i - start);
-            i++;
-            if (is_valid_brace_expansion_syntax(str) == 0)
-            {
-                write(2, "minishell: ${", 13);
-                write(2, str, ft_strlen(str));
-                write(2, "}: bad substitution\n", 21);
-                free(str);
-                free(new_full_str);
-                return (NULL);
-            }
-            tmp = get_env(str, env);
-            free(str);
-            if (tmp == NULL)
-            {
-                tmp = ft_strdup("");
-                str = strjoin_safe(new_full_str, tmp);
-                free(tmp);
-            }
-            else
-            {
-                str = strjoin_safe(new_full_str, tmp);
-            }
-            free(new_full_str);
-            new_full_str = str;
-        }
-        else if (full_str[i] == '$')
-        {
-            i++;
-
-            if (full_str[i] == '\0' || (ft_isalnum(full_str[i]) == 0 && full_str[i] != '_'))
-            {
-                tmp = ft_strdup("$");
-                str = strjoin_safe(new_full_str, tmp);
-                free(tmp);
-                free(new_full_str);
-                new_full_str = str;
-            }
-            else 
-            {
-                start = i;
-                while (full_str[i] != '\0' && (ft_isalnum(full_str[i]) == 1 || full_str[i] == '_'))
-                    i++;
-                str = ft_strndup(full_str + start, i - start);
-                tmp = get_env(str, env);
-                free(str);
-                if (tmp == NULL)
-                {
-                    tmp = ft_strdup("");
-                    str = strjoin_safe(new_full_str, tmp);
-                    free(tmp);
-                }
-                else
-                {
-                    str = strjoin_safe(new_full_str, tmp);
-                }
-                free(new_full_str);
-                new_full_str = str;
-            }
-        }
-        else 
-        {
-            start = i;
-            while (full_str[i] != '\0' && full_str[i] != '$')
-                i++;
-            str = ft_strndup(full_str + start, i - start);
-            tmp = strjoin_safe(new_full_str, str);
-            free(new_full_str);
-            free(str);
-            new_full_str = tmp;
-        }
-    }
-    return (new_full_str);
-}
-
-
-
-void    apply_env_expansion(t_segment	*segment_list, t_data data)
-{
-    char *expand_str;
-    t_word_fragments *current;
-
-    while (segment_list != NULL)
-    {
-        if (segment_list->type == WORD)
-        {
-            current = segment_list->content;
-            while (current != NULL)
-            {
-                if (current->quote_type == QUOTE_NONE ||
-                    current->quote_type == QUOTE_DOUBLE)
-                {
-                    expand_str = expand_env_variables(current->str, data.env);
-                    if (expand_str == NULL)
-                    {
-                        current = current->next;
-                        continue;
-                    }
-                    free(current->str);
-                    current->str = ft_strdup(expand_str);
-                    free(expand_str);
-                }
-                current = current->next;
-            }
-        }
-        segment_list = segment_list->next;
-    }
-}
-*/
-
-// Old
-// int is_valid_brace_expansion_syntax(char *str)
-// {
-// 	int i;
-
-//     i = 0;
-// 	if (str == NULL || (ft_isalpha(str[0]) == 0 && str[0] != '_'))
-// 		return (0);
-// 	while (str[i] != '\0')
-// 	{
-// 		if (ft_isalnum(str[i]) == 0 && str[i] != '_')
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-// }

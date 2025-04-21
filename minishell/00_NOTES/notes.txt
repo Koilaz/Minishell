@@ -1,4 +1,110 @@
 //-----------------------------------//
+// Notes perso :
+//-----------------------------------//
+
+signal(SIGINT, sigint_handler); // gérer CTRL+C
+signal(SIGQUIT, SIG_IGN);       // ignorer CTRL+
+
+
+
+
+
+
+
+//-----------------------------------//
+// Vieux code au cas ou :
+//-----------------------------------//
+
+
+// void    reassign_segment_list_index(t_segment *segment_list)
+// {
+//     int i;
+
+//     i = 0;
+//     while (segment_list != NULL)
+//     {
+//         segment_list->index = i;
+//         i++;
+//         segment_list = segment_list->next;
+//     }
+// }
+
+
+
+
+
+// t_word_fragments *split_word_into_fragments(const char *str, int *chars_read, int *are_quotes_closed)
+// {
+//     t_word_fragments *fragment_list;
+//     t_word_fragments *fragment;
+//     char *fragment_str;
+//     int i;
+//     int start;
+//     int len;
+//     t_quote_type quote_type;
+
+//     i = 0;
+//     fragment_list = NULL;
+//     while (str[i] != '\0' && is_separator(str[i]) == 0)
+//     {
+//         start = i;
+//         len = 0;
+//         quote_type = QUOTE_NONE;
+//         if (str[i] == '\'' || str[i] == '\"')
+//         {
+//             if (str[i] == '\'')
+//                 quote_type = QUOTE_SINGLE;
+//             else
+//                 quote_type = QUOTE_DOUBLE;
+//             i++;
+//             start = i;
+//             while (str[i] != '\0' && ((quote_type == QUOTE_SINGLE && str[i] != '\'') ||
+//                               (quote_type == QUOTE_DOUBLE && str[i] != '\"')))
+//                 i++;
+//             if (str[i] == '\0')
+//             {
+//                 *are_quotes_closed = -1;
+//                 free_word_fragments(fragment_list);
+//                 fragment_list = NULL;
+//                 break;
+//             }
+//             len = i - start;
+//             i++;
+//         }
+//         else
+//         {
+//             while (str[i] != '\0' && is_separator(str[i]) == 0 && str[i] != '\'' && str[i] != '\"')
+//                 i++;
+//             len = i - start;
+//         }
+//         fragment_str = ft_strndup(str + start, len);
+//         if (fragment_str == NULL)
+//         {
+//             free_word_fragments(fragment_list);
+//             return (NULL);
+//         }
+//         fragment = create_fragment(fragment_str, quote_type);
+//         if (fragment == NULL)
+//         {
+//             free(fragment_str);
+// 	        free_word_fragments(fragment_list);
+// 	        return (NULL);
+//         }
+//         fragment_add_back(&fragment_list, fragment);
+//     }
+//     *chars_read = i;
+//     return (fragment_list);
+// }
+
+
+
+
+
+
+
+
+
+//-----------------------------------//
 
 // Codes d’erreur :
 

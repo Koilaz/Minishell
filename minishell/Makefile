@@ -3,20 +3,34 @@ BUILD_DIR = build
 
 # Fichiers sources
 SRC_FILES = minishell.c \
-parsing/initialization/initialization.c \
+parsing/initialization/minishell_init.c \
+parsing/initialization/env_minimal_init.c \
+parsing/initialization/env_completion.c \
+parsing/initialization/shlvl.c \
+parsing/initialization/signal.c \
 parsing/prompt/prompt.c \
+parsing/prompt/hostname.c \
 parsing/lexer/lexer.c \
+parsing/lexer/word_segments.c \
+parsing/lexer/word_fragments.c \
+parsing/lexer/operator_segments.c \
+parsing/lexer/segment_list.c \
+parsing/lexer/segment_list_free.c \
+parsing/lexer/lexer_utils.c \
 parsing/expansion/expand_env.c \
-minishell_utils.c \
-exit.c \
-execution.c \
+built_in/exit.c \
+built_in/export.c \
+built_in/echo.c \
+built_in/unset.c \
+built_in/env.c \
+built_in/pwd.c \
+built_in/cd.c \
+execution/execution.c\
+execution/init_redirection.c\
+execution/redirection.c\
+execution/execution_utils.c\
+utils/minishell_utils.c \
 exit_minishell.c \
-export.c \
-echo.c \
-unset.c \
-env.c \
-pwd.c \
-cd.c \
 
 # Transformation des fichiers sources en fichiers objets
 OBJFILES = $(patsubst %.c, $(BUILD_DIR)/%.o, $(SRC_FILES))

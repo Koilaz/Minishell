@@ -138,8 +138,6 @@ validate_syntax(t_segment *segment_list);
 //-----------------------------------//
 
 
-// voir is_str_digit et ft_str_is_digit avec léo
-
 // Norminer tout et réorganiser fichier parsing
 
 // Début fichier erreurs: suite du projet
@@ -147,9 +145,39 @@ validate_syntax(t_segment *segment_list);
 
 
 
-// Gerer le code d'erreur de CTRL C
+// Gerer le code d'erreur de CTRL C   FAIT!!!
 
-// Gerer lorsque l'utilisateur fait une ligne vide dans le main.c
+// Gerer lorsque l'utilisateur fait une ligne vide dans le main.c   FAIT!!!
+
+// Bug apres norminette boucle infini sur quote pas vide        FAIT!!!
+
+// voir le bug suivant
+// mwallis@k1r4p14:minishell/minishell ‹main*›$ echo $USER_salut       $USER
+// mwallis
+
+// voir ce que tom disait
+// TODO expansion Tom
+// mwallis@k1r4p14:~ $ bash
+// mwallis@k1r4p14:~$ cat < $mwaliz
+// bash: $mwaliz: ambiguous redirect
+// mwallis@k1r4p14:~$ export mmm="zo za"
+// mwallis@k1r4p14:~$ cat < $mmm
+// bash: $mmm: ambiguous redirect
+// mwallis@k1r4p14:~$ 
+
+// mwallis@k1r4p14:~ $ bash
+// mwallis@k1r4p14:~$ cat < $mwaliz
+// bash: $mwaliz: ambiguous redirect
+// mwallis@k1r4p14:~$ export mmm="zo za"
+// mwallis@k1r4p14:~$ cat < $mmm
+// bash: $mmm: ambiguous redirect
+// mwallis@k1r4p14:~$ cat < $mmm
+// bash: $mmm: ambiguous redirect
+// mwallis@k1r4p14:~$ cat < "$mmm"
+// bash: zo za: No such file or directory
+// mwallis@k1r4p14:~$ cat < "$mmmzizi"
+// bash: : No such file or directory
+// mwallis@k1r4p14:~$ 
 
 
 

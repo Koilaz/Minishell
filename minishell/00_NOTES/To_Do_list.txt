@@ -1,0 +1,5 @@
+- exec minishell strcmp depuis la fin pour le chemin absolue.
+- $? quand execve,  ne fonctionne pas.
+- check leak and close fd avec les redirections.
+- peaufinner quand on redirige minishell dans minishell.
+- leaks built in exit
